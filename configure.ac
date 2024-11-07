@@ -1,0 +1,6 @@
+AC_INIT([MyProgram], [1.0], [a.puzenko2004@gmail.com.com])
+AM_INIT_AUTOMAKE
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
