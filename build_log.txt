@@ -1,0 +1,5 @@
+[1mdpkg-buildpackage: [0m[32minfo[0m: source package myprogram
+[1mdpkg-buildpackage: [0m[32minfo[0m: source version 1.0-1
+[1mdpkg-buildpackage: [0m[32minfo[0m: source distribution unstable
+[1mdpkg-buildpackage: [0m[32minfo[0m: source changed by Your Name <your.email@example.com>
+[1mdpkg-buildpackage: [0m[32minfo[0m: host architecture amd64

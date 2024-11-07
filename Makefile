@@ -200,14 +200,14 @@ AUTOHEADER = ${SHELL} '/home/vboxuser/Documents/DevOps/DevOps3/missing' autohead
 AUTOMAKE = ${SHELL} '/home/vboxuser/Documents/DevOps/DevOps3/missing' automake-1.16
 AWK = mawk
 CC = gcc
-CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
-CPPFLAGS = 
+CCDEPMODE = depmode=none
+CFLAGS = -g -O2 -ffile-prefix-map=/home/vboxuser/Documents/DevOps/DevOps3=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security
+CPPFLAGS = -Wdate-time -D_FORTIFY_SOURCE=2
 CSCOPE = cscope
 CTAGS = ctags
 CXX = g++
-CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
+CXXDEPMODE = depmode=none
+CXXFLAGS = -g -O2 -ffile-prefix-map=/home/vboxuser/Documents/DevOps/DevOps3=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"program\" -DPACKAGE_TARNAME=\"program\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"program\ 1.0\" -DPACKAGE_BUGREPORT=\"puzenko.artem@lll.kpi.ua\" -DPACKAGE_URL=\"\" -DPACKAGE=\"program\" -DVERSION=\"1.0\"
 DEPDIR = .deps
@@ -221,14 +221,14 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LDFLAGS = 
+LDFLAGS = -Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -flto=auto -Wl,-z,relro
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} '/home/vboxuser/Documents/DevOps/DevOps3/missing' makeinfo
 MKDIR_P = /usr/bin/mkdir -p
 OBJEXT = o
-PACKAGE = program
+PACKAGE = myprogram
 PACKAGE_BUGREPORT = puzenko.artem@lll.kpi.ua
 PACKAGE_NAME = program
 PACKAGE_STRING = program 1.0
@@ -236,6 +236,11 @@ PACKAGE_TARNAME = program
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
+PKG_CONFIG = /usr/bin/pkg-config
+PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_PATH = 
+PROGRAM_CFLAGS = -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+PROGRAM_LIBS = -lglib-2.0
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
@@ -252,7 +257,7 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build_alias = 
+build_alias = x86_64-linux-gnu
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
@@ -262,30 +267,32 @@ exec_prefix = ${prefix}
 host_alias = 
 htmldir = ${docdir}
 includedir = ${prefix}/include
-infodir = ${datarootdir}/info
+infodir = ${prefix}/share/info
 install_sh = ${SHELL} /home/vboxuser/Documents/DevOps/DevOps3/install-sh
-libdir = ${exec_prefix}/lib
+libdir = ${prefix}/lib/x86_64-linux-gnu
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
-localstatedir = ${prefix}/var
-mandir = ${datarootdir}/man
+localstatedir = /var
+mandir = ${prefix}/share/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local
+prefix = /usr
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
+runstatedir = /run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
-sysconfdir = ${prefix}/etc
+sysconfdir = /etc
 target_alias = 
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
 myprogram_SOURCES = main.cpp funcA.cpp funcA.h
+CTRLF_DIR = $(CURDIR)/deb/DEBIAN
+CTRLF_NAME = $(CTRLF_DIR)/control
 all: all-am
 
 .SUFFIXES:
@@ -376,8 +383,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/funcA.Po # am--include-marker
-include ./$(DEPDIR)/main.Po # am--include-marker
+#include ./$(DEPDIR)/funcA.Po # am--include-marker
+#include ./$(DEPDIR)/main.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -386,18 +393,18 @@ $(am__depfiles_remade):
 am--depfiles: $(am__depfiles_remade)
 
 .cpp.o:
-	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-#	$(AM_V_CXX)source='$<' object='$@' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXXCOMPILE) -c -o $@ $<
+#	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	$(AM_V_CXX)source='$<' object='$@' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-#	$(AM_V_CXX)source='$<' object='$@' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+#	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	$(AM_V_CXX)source='$<' object='$@' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -761,6 +768,23 @@ uninstall-am: uninstall-binPROGRAMS
 
 .PRECIOUS: Makefile
 
+
+.PHONY: deb debug
+
+deb:
+	mkdir -p $(CTRLF_DIR)
+	echo Package: $(PACKAGE) > $(CTRLF_NAME)
+	echo Version: $(VERSION) >> $(CTRLF_NAME)
+	echo Architecture: all >> $(CTRLF_NAME)
+	echo Maintainer: $(PACKAGE_BUGREPORT) >> $(CTRLF_NAME)
+	echo -n "Description:" >> $(CTRLF_NAME)
+	cat aztec.1 >> $(CTRLF_NAME)
+	make DESTDIR=$(CURDIR)/deb install
+
+debug:
+	@echo "${PACKAGE}"
+	@echo "${VERSION}"
+	@echo "${PACKAGE_BUGREPORT}"
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
