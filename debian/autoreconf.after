@@ -3,6 +3,7 @@ dd63184811cb2ff705c3e466364d3773  ./INSTALL
 97771a8183ef7cdf35f621ae63b8b1c9  ./main.cpp
 d41d8cd98f00b204e9800998ecf8427e  ./autoscan.log
 9cf2af28a6199dc3ed574980a0d1ac04  ./Makefile.in
+ea558ea97381f13ee5c3ff35ba940113  ./deb/DEBIAN/control
 3e9744085b8284bc03423f0fd5c9b74a  ./funcA.cpp
 00353077d6e3d2fd8f9f810722d18ac0  ./configure
 6ecafe15a6088eb7a2f4f2aadbb240ce  ./depcomp
@@ -14,7 +15,7 @@ b090c5891571c820e91d345a9551af44  ./install-sh
 d41d8cd98f00b204e9800998ecf8427e  ./ChangeLog
 0ec388b6fb3f10525d674cf00fcc0545  ./configure.ac
 cfbeffd257a770e01d895bd1b03abc71  ./aclocal.m4
-00353077d6e3d2fd8f9f810722d18ac0  ./configure~
+4dfafa5c8061e56214dc38792c66464a  ./configure~
 3d9bb0216d508bfdf96a74ddb77f0978  ./test_tarball/myprogram-1.0/config.log
 dd63184811cb2ff705c3e466364d3773  ./test_tarball/myprogram-1.0/INSTALL
 97771a8183ef7cdf35f621ae63b8b1c9  ./test_tarball/myprogram-1.0/main.cpp
@@ -52,7 +53,7 @@ d41d8cd98f00b204e9800998ecf8427e  ./README
 1003b8200f1c5372ae949d7cc737f917  ./autom4te.cache/traces.2
 0583bdec90e9d9130b89302cf48864d2  ./autom4te.cache/output.1
 8c76c343a8a56a10e5309942906a04af  ./autom4te.cache/output.2
-1f35407dad782aa2c92ba6c3506a1083  ./autom4te.cache/requests
+810509979f55098deb3e59369f709ea8  ./autom4te.cache/requests
 1003b8200f1c5372ae949d7cc737f917  ./autom4te.cache/traces.1
 34ce3c35c95000d915a2bf666c4db845  ./autom4te.cache/traces.0
 0583bdec90e9d9130b89302cf48864d2  ./autom4te.cache/output.0

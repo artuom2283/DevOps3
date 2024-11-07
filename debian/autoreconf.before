@@ -2,9 +2,10 @@
 dd63184811cb2ff705c3e466364d3773  ./INSTALL
 97771a8183ef7cdf35f621ae63b8b1c9  ./main.cpp
 d41d8cd98f00b204e9800998ecf8427e  ./autoscan.log
-9cf2af28a6199dc3ed574980a0d1ac04  ./Makefile.in
+f48d985a7a2f7c50c92b20c26e48321a  ./Makefile.in
+ea558ea97381f13ee5c3ff35ba940113  ./deb/DEBIAN/control
 3e9744085b8284bc03423f0fd5c9b74a  ./funcA.cpp
-00353077d6e3d2fd8f9f810722d18ac0  ./configure
+4dfafa5c8061e56214dc38792c66464a  ./configure
 6ecafe15a6088eb7a2f4f2aadbb240ce  ./depcomp
 086b8da5a251be943f06d3a927bbe60e  ./missing
 94d951695ea31e878f629fdca911cb5d  ./myprogram-1.0.tar.gz
