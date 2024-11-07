@@ -2,7 +2,7 @@
 dd63184811cb2ff705c3e466364d3773  ./INSTALL
 97771a8183ef7cdf35f621ae63b8b1c9  ./main.cpp
 d41d8cd98f00b204e9800998ecf8427e  ./autoscan.log
-dfc9c8cb43a7dd5a41377a3976164e17  ./Makefile.in
+9cf2af28a6199dc3ed574980a0d1ac04  ./Makefile.in
 3e9744085b8284bc03423f0fd5c9b74a  ./funcA.cpp
 00353077d6e3d2fd8f9f810722d18ac0  ./configure
 6ecafe15a6088eb7a2f4f2aadbb240ce  ./depcomp
@@ -37,7 +37,7 @@ dad0227408777290e6c56afc03cf6e12  ./test_tarball/myprogram-1.0/.deps/funcA.Po
 d41d8cd98f00b204e9800998ecf8427e  ./test_tarball/myprogram-1.0/README
 b816f92498a6ec8138d9ec53a14bcaa4  ./compile
 d41d8cd98f00b204e9800998ecf8427e  ./NEWS
-146523f643ee36f86578fae7d628a44e  ./Makefile.am
+84a797b6fc214c553fdd013580da08fa  ./Makefile.am
 783afe0089371c3373a429aaa3737bf3  ./main
 dad0227408777290e6c56afc03cf6e12  ./.deps/func.Po
 1ebbd3e34237af26da5dc08a4e440464  ./COPYING

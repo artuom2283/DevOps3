@@ -6,22 +6,31 @@ PACKAGE = myprogram
 VERSION = 1.0
 PACKAGE_BUGREPORT = puzenko.artem@lll.kpi.ua
 
-CTRLF_DIR = $(CURDIR)/debian
-CTRLF_NAME = $(CTRLF_DIR)/control
+DEBIAN_DIR = $(CURDIR)/debian
+CONTROL_FILE = $(DEBIAN_DIR)/control
+DEB_PACKAGE_DIR = $(CURDIR)/deb
 
-.PHONY: deb debug
+.PHONY: deb clean_deb debug
 
-deb:
-	mkdir -p $(CTRLF_DIR)
-	echo Package: $(PACKAGE) > $(CTRLF_NAME)
-	echo Version: $(VERSION) >> $(CTRLF_NAME)
-	echo Architecture: all >> $(CTRLF_NAME)
-	echo Maintainer: $(PACKAGE_BUGREPORT) >> $(CTRLF_NAME)
-	echo -n "Description:" >> $(CTRLF_NAME)
-	cat aztec.1 >> $(CTRLF_NAME)
-	make DESTDIR=$(CURDIR)/deb install
+deb: clean_deb
+  mkdir -p $(DEB_PACKAGE_DIR) $(DEBIAN_DIR)
+  echo "Package: $(PACKAGE)" > $(CONTROL_FILE)
+  echo "Version: $(VERSION)" >> $(CONTROL_FILE)
+  echo "Section: base" >> $(CONTROL_FILE)
+  echo "Priority: optional" >> $(CONTROL_FILE)
+  echo "Architecture: all" >> $(CONTROL_FILE)
+  echo "Maintainer: $(PACKAGE_BUGREPORT)" >> $(CONTROL_FILE)
+  echo "Description: This is the $(PACKAGE) program." >> $(CONTROL_FILE)
+
+  make DESTDIR=$(DEB_PACKAGE_DIR) install
+  
+  dpkg-deb --build $(DEB_PACKAGE_DIR) .
+
+clean_deb:
+  rm -rf $(DEB_PACKAGE_DIR)
+  rm -rf $(DEBIAN_DIR)
 
 debug:
-	@echo "${PACKAGE}"
-	@echo "${VERSION}"
-	@echo "${PACKAGE_BUGREPORT}"
+  @echo "Package: ${PACKAGE}"
+  @echo "Version: ${VERSION}"
+  @echo "Maintainer: ${PACKAGE_BUGREPORT}"

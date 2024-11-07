@@ -291,7 +291,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 myprogram_SOURCES = main.cpp funcA.cpp funcA.h
-CTRLF_DIR = $(CURDIR)/deb/DEBIAN
+CTRLF_DIR = $(CURDIR)/debian
 CTRLF_NAME = $(CTRLF_DIR)/control
 all: all-am
 
