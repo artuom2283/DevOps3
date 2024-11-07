@@ -70,10 +70,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/myprogram
-pkgincludedir = $(includedir)/myprogram
-pkglibdir = $(libdir)/myprogram
-pkglibexecdir = $(libexecdir)/myprogram
+pkgdatadir = $(datadir)/program
+pkgincludedir = $(includedir)/program
+pkglibdir = $(libdir)/program
+pkglibexecdir = $(libexecdir)/program
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -172,7 +172,7 @@ am__define_uniq_tagged_files = \
   done | $(am__uniquify_input)`
 AM_RECURSIVE_TARGETS = cscope
 am__DIST_COMMON = $(srcdir)/Makefile.in AUTHORS COPYING ChangeLog \
-	INSTALL NEWS README depcomp install-sh missing
+	INSTALL NEWS README compile depcomp install-sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -199,6 +199,9 @@ AUTOCONF = ${SHELL} '/home/vboxuser/Documents/DevOps/DevOps3/missing' autoconf
 AUTOHEADER = ${SHELL} '/home/vboxuser/Documents/DevOps/DevOps3/missing' autoheader
 AUTOMAKE = ${SHELL} '/home/vboxuser/Documents/DevOps/DevOps3/missing' automake-1.16
 AWK = mawk
+CC = gcc
+CCDEPMODE = depmode=gcc3
+CFLAGS = -g -O2
 CPPFLAGS = 
 CSCOPE = cscope
 CTAGS = ctags
@@ -206,7 +209,7 @@ CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"MyProgram\" -DPACKAGE_TARNAME=\"myprogram\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"MyProgram\ 1.0\" -DPACKAGE_BUGREPORT=\"a.puzenko2004@gmail.com.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"myprogram\" -DVERSION=\"1.0\"
+DEFS = -DPACKAGE_NAME=\"program\" -DPACKAGE_TARNAME=\"program\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"program\ 1.0\" -DPACKAGE_BUGREPORT=\"puzenko.artem@lll.kpi.ua\" -DPACKAGE_URL=\"\" -DPACKAGE=\"program\" -DVERSION=\"1.0\"
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -225,11 +228,11 @@ LTLIBOBJS =
 MAKEINFO = ${SHELL} '/home/vboxuser/Documents/DevOps/DevOps3/missing' makeinfo
 MKDIR_P = /usr/bin/mkdir -p
 OBJEXT = o
-PACKAGE = myprogram
-PACKAGE_BUGREPORT = a.puzenko2004@gmail.com.com
-PACKAGE_NAME = MyProgram
-PACKAGE_STRING = MyProgram 1.0
-PACKAGE_TARNAME = myprogram
+PACKAGE = program
+PACKAGE_BUGREPORT = puzenko.artem@lll.kpi.ua
+PACKAGE_NAME = program
+PACKAGE_STRING = program 1.0
+PACKAGE_TARNAME = program
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
@@ -241,6 +244,7 @@ abs_builddir = /home/vboxuser/Documents/DevOps/DevOps3
 abs_srcdir = /home/vboxuser/Documents/DevOps/DevOps3
 abs_top_builddir = /home/vboxuser/Documents/DevOps/DevOps3
 abs_top_srcdir = /home/vboxuser/Documents/DevOps/DevOps3
+ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
 am__leading_dot = .
@@ -280,7 +284,8 @@ target_alias =
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-myprogram_SOURCES = main.cpp funcA.cpp funcA.h
+AUTOMAKE_OPTIONS = foreign
+myprogram_SOURCES = main.cpp funcA.cpp func.h
 all: all-am
 
 .SUFFIXES:
@@ -291,15 +296,15 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
-	      echo ' cd $(srcdir) && $(AUTOMAKE) --gnu'; \
-	      $(am__cd) $(srcdir) && $(AUTOMAKE) --gnu \
+	      echo ' cd $(srcdir) && $(AUTOMAKE) --foreign'; \
+	      $(am__cd) $(srcdir) && $(AUTOMAKE) --foreign \
 		&& exit 0; \
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu Makefile
+	  $(AUTOMAKE) --foreign Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
