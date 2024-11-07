@@ -285,7 +285,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-myprogram_SOURCES = main.cpp funcA.cpp func.h
+myprogram_SOURCES = main.cpp funcA.cpp funcA.h
 all: all-am
 
 .SUFFIXES:
