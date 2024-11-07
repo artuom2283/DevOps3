@@ -6,7 +6,7 @@ PACKAGE = myprogram
 VERSION = 1.0
 PACKAGE_BUGREPORT = puzenko.artem@lll.kpi.ua
 
-CTRLF_DIR = $(CURDIR)/deb/DEBIAN
+CTRLF_DIR = $(CURDIR)/debian
 CTRLF_NAME = $(CTRLF_DIR)/control
 
 .PHONY: deb debug
