@@ -12,13 +12,12 @@ CTRLF_NAME = $(CTRLF_DIR)/control
 .PHONY: deb debug
 
 deb:
-	mkdir -p $(CTRLF_DIR)
-	echo Package: $(PACKAGE) > $(CTRLF_NAME)
-	echo Version: $(VERSION) >> $(CTRLF_NAME)
-	echo Architecture: all >> $(CTRLF_NAME)
-	echo Maintainer: $(PACKAGE_BUGREPORT) >> $(CTRLF_NAME)
-	echo -n "Description:" >> $(CTRLF_NAME)
-	cat aztec.1 >> $(CTRLF_NAME)
+	mkdir -p deb/DEBIAN
+	echo "Package: $(PACKAGE)" > deb/DEBIAN/control
+	echo "Version: $(VERSION)" >> deb/DEBIAN/control
+	echo "Architecture: all" >> deb/DEBIAN/control
+	echo "Maintainer: $(PACKAGE_BUGREPORT)" >> deb/DEBIAN/control
+	echo "Description: MyProgram does amazing things" >> deb/DEBIAN/control
 	make DESTDIR=$(CURDIR)/deb install
 
 debug:
