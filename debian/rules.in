@@ -1,7 +1,0 @@
-    #!/usr/bin/make -f
-
-    # Set the DEB_BUILD_PROFILES environment variable to avoid common checks.
-    export DEB_BUILD_PROFILES=
-
-    %:
-        dh $@

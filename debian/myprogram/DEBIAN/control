@@ -1,11 +1,13 @@
-Package: myprogram
-Version: 1.0-1
-Architecture: amd64
-Maintainer: puzenko.artem@lll.kpi.ua
-Installed-Size: 23
-Depends: libc6 (>= 2.34), libstdc++6 (>= 4.4)
+Source: myprogram
 Section: utils
 Priority: optional
+Maintainer: puzenko.artem@lll.kpi.ua
+Build-Depends: debhelper-compat (= 12), build-essential
+Standards-Version: 4.5.0
 Homepage: https://your.homepage.com
+
+Package: myprogram
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: MyProgram
  A short description of what MyProgram does.

@@ -12,13 +12,12 @@ CTRLF_NAME = $(CTRLF_DIR)/control
 .PHONY: deb debug
 
 deb:
-	mkdir -p deb/DEBIAN
-	echo "Package: $(PACKAGE)" > deb/DEBIAN/control
-	echo "Version: $(VERSION)" >> deb/DEBIAN/control
-	echo "Architecture: all" >> deb/DEBIAN/control
-	echo "Maintainer: $(PACKAGE_BUGREPORT)" >> deb/DEBIAN/control
-	echo "Description: MyProgram does amazing things" >> deb/DEBIAN/control
-	make DESTDIR=$(CURDIR)/deb install
+    echo "Package: $(PACKAGE)" > deb/DEBIAN/control
+    echo "Version: $(VERSION)" >> deb/DEBIAN/control
+    echo "Architecture: all" >> deb/DEBIAN/control
+    echo "Maintainer: $(PACKAGE_BUGREPORT)" >> deb/DEBIAN/control
+    echo "Description: MyProgram does amazing things" >> deb/DEBIAN/control
+
 
 debug:
 	@echo "${PACKAGE}"

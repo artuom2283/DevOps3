@@ -772,13 +772,12 @@ uninstall-am: uninstall-binPROGRAMS
 .PHONY: deb debug
 
 deb:
-	mkdir -p $(CTRLF_DIR)
-	echo Package: $(PACKAGE) > $(CTRLF_NAME)
-	echo Version: $(VERSION) >> $(CTRLF_NAME)
-	echo Architecture: all >> $(CTRLF_NAME)
-	echo Maintainer: $(PACKAGE_BUGREPORT) >> $(CTRLF_NAME)
-	echo -n "Description:" >> $(CTRLF_NAME)
-	cat aztec.1 >> $(CTRLF_NAME)
+	mkdir -p $(CURDIR)/deb/DEBIAN
+	echo "Package: $(PACKAGE)" > $(CURDIR)/deb/DEBIAN/control
+	echo "Version: $(VERSION)" >> $(CURDIR)/deb/DEBIAN/control
+	echo "Architecture: all" >> $(CURDIR)/deb/DEBIAN/control
+	echo "Maintainer: $(PACKAGE_BUGREPORT)" >> $(CURDIR)/deb/DEBIAN/control
+	echo "Description: MyProgram does amazing things" >> $(CURDIR)/deb/DEBIAN/control
 	make DESTDIR=$(CURDIR)/deb install
 
 debug:
