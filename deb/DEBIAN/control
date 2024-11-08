@@ -7,6 +7,6 @@ Standards-Version: 4.5.0
 Homepage: https://your.homepage.com
 Package: myprogram
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: libc6, libstdc++6
 Description: MyProgram
  A short description of what MyProgram does.
