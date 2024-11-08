@@ -16,10 +16,11 @@ jobs:
       - name: Install tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libgtest-dev
+          sudo apt-get install -y build-essential libgtest-dev automake autoconf
 
       - name: Build
         run: |
+          autoreconf -i
           make
 
       - name: Tests
