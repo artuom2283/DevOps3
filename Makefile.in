@@ -102,7 +102,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_myprogram_OBJECTS = main.$(OBJEXT) funcA.$(OBJEXT)
+am_myprogram_OBJECTS = main.$(OBJEXT) funcA.$(OBJEXT) \
+	HTTP_Server.$(OBJEXT)
 myprogram_OBJECTS = $(am_myprogram_OBJECTS)
 myprogram_LDADD = $(LDADD)
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -124,8 +125,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/funcA.Po ./$(DEPDIR)/main.Po \
-	tests/$(DEPDIR)/test.Po
+am__depfiles_remade = ./$(DEPDIR)/HTTP_Server.Po ./$(DEPDIR)/funcA.Po \
+	./$(DEPDIR)/main.Po tests/$(DEPDIR)/test.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -296,7 +297,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign subdir-objects
-myprogram_SOURCES = main.cpp funcA.cpp funcA.h
+myprogram_SOURCES = main.cpp funcA.cpp funcA.h HTTP_Server.cpp
 test_SOURCES = tests/test.cpp funcA.cpp
 all: all-am
 
@@ -404,6 +405,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTP_Server.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/funcA.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test.Po@am__quote@ # am--include-marker
@@ -707,7 +709,8 @@ clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f ./$(DEPDIR)/funcA.Po
+		-rm -f ./$(DEPDIR)/HTTP_Server.Po
+	-rm -f ./$(DEPDIR)/funcA.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f tests/$(DEPDIR)/test.Po
 	-rm -f Makefile
@@ -757,7 +760,8 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f ./$(DEPDIR)/funcA.Po
+		-rm -f ./$(DEPDIR)/HTTP_Server.Po
+	-rm -f ./$(DEPDIR)/funcA.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f tests/$(DEPDIR)/test.Po
 	-rm -f Makefile
