@@ -5,7 +5,7 @@ FROM golang:1.20 AS builder
 WORKDIR /go/src/app
 
 # Клонируем репозиторий с программой
-RUN git clone https://github.com/твой-репозиторий.git .
+RUN git clone https://github.com/artuom2283/DevOps3.git .
 
 # Выполняем сборку программы
 RUN go build -o myprogram .
