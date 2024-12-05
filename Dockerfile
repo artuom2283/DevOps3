@@ -1,32 +1,32 @@
-# First stage: build the software in a GCC image
+# Первый этап: сборка приложения
 FROM gcc:latest AS build
 
-# Set the working directory
+# Устанавливаем рабочую директорию
 WORKDIR /usr/src/app
 
-# Clone the repository from GitHub
+# Клонируем репозиторий из GitHub
 RUN git clone --branch branchHTTPserver https://github.com/artuom2283/DevOps3.git .
 
-# List the files in the working directory for debugging (to see the cloned folder)
+# Проверка содержимого каталога для отладки
 RUN ls -alh .
 
-# Compile the application from the correct path (no DevOps3 prefix needed)
-RUN g++ -std=c++17 -o myprogram HTTP_Server.cpp funcA.cpp
+# Указываем компилятору, где искать заголовочные файлы
+RUN g++ -std=c++17 -I/usr/src/app -o myprogram HTTP_Server.cpp funcA.cpp
 
-# Second stage: use an Alpine-based image to run the software
+# Второй этап: минимальный образ для запуска
 FROM alpine:latest
 
-# Install dependencies needed to run the application
-RUN apk --no-cache add libc6-compat
+# Устанавливаем необходимые зависимости
+RUN apk --no-cache add libstdc++ libc6-compat
 
-# Set the working directory in the new image
-WORKDIR /usr/src/app
+# Устанавливаем рабочую директорию
+WORKDIR /home
 
-# Copy the executable from the build stage
+# Копируем исполняемый файл из первого этапа
 COPY --from=build /usr/src/app/myprogram .
 
-# Expose the port
+# Делаем порт доступным
 EXPOSE 8081
 
-# Run the HTTP server
-CMD ["./myprogram"]
+# Устанавливаем команду для запуска приложения
+ENTRYPOINT ["./myprogram"]
