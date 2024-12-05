@@ -1,17 +1,17 @@
 # Этап сборки
 FROM alpine AS build
 
-# Установка необходимых инструментов и библиотек
-RUN apk add --no-cache build-base make automake autoconf git pkgconfig
+# Установка необходимых инструментов
+RUN apk add --no-cache build-base git
 
 # Устанавливаем рабочую директорию
 WORKDIR /home/app
 
-# Клонирование репозитория
+# Клонируем репозиторий
 RUN git clone --branch branchHTTPserver https://github.com/artuom2283/DevOps3.git .
 
-# Компиляция вручную (если нет CMake)
-RUN g++ -std=c++17 -o myprogram HTTP_Server.cpp funcA.cpp
+# Компиляция вручную
+RUN g++ -std=c++17 -I/home/app -o myprogram HTTP_Server.cpp funcA.cpp
 
 # Этап минимального образа для запуска
 FROM alpine
