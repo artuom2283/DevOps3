@@ -4,8 +4,6 @@ FROM alpine AS build
 # Установка необходимых инструментов и библиотек
 RUN apk add --no-cache build-base make automake autoconf git pkgconfig
 
-RUN ls -R /home/app
-
 # Устанавливаем рабочую директорию
 WORKDIR /home/app
 
