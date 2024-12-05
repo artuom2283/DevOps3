@@ -2,7 +2,9 @@
 FROM alpine AS build
 
 # Установка необходимых инструментов и библиотек
-RUN apk add --no-cache build-base make automake autoconf git pkgconfig cmake
+RUN apk add --no-cache build-base make automake autoconf git pkgconfig
+
+RUN ls -R /home/app
 
 # Устанавливаем рабочую директорию
 WORKDIR /home/app
@@ -10,21 +12,17 @@ WORKDIR /home/app
 # Клонирование репозитория
 RUN git clone --branch branchHTTPserver https://github.com/artuom2283/DevOps3.git .
 
-# Выполнение сборки
-RUN cmake .
-RUN make
+# Компиляция вручную (если нет CMake)
+RUN g++ -std=c++17 -o myprogram HTTP_Server.cpp funcA.cpp
 
 # Этап минимального образа для запуска
 FROM alpine
 
-# Установка необходимых библиотек для выполнения программы
+# Установка необходимых библиотек
 RUN apk --no-cache add libstdc++
 
-# Копирование исполняемого файла из этапа сборки
+# Копирование исполняемого файла
 COPY --from=build /home/app/myprogram /usr/local/bin/myprogram
-
-# Установка рабочей директории
-WORKDIR /home
 
 # Открываем порт
 EXPOSE 8081
