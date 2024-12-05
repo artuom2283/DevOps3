@@ -1,32 +1,26 @@
-# Первый этап: сборка приложения
-FROM gcc:latest AS build
+# Этап 1: Сборка программы (в временном образе)
+FROM golang:1.20 AS builder
 
-# Устанавливаем рабочую директорию
-WORKDIR /usr/src/app
+# Устанавливаем рабочую директорию для сборки
+WORKDIR /go/src/app
 
-# Клонируем репозиторий из GitHub
-RUN git clone --branch branchHTTPserver https://github.com/artuom2283/DevOps3.git .
+# Клонируем репозиторий с программой
+RUN git clone https://github.com/твой-репозиторий.git .
 
-# Проверка содержимого каталога для отладки
-RUN ls -alh .
+# Выполняем сборку программы
+RUN go build -o myprogram .
 
-# Указываем компилятору, где искать заголовочные файлы
-RUN g++ -std=c++17 -I/usr/src/app -o myprogram HTTP_Server.cpp funcA.cpp
-
-# Второй этап: минимальный образ для запуска
+# Этап 2: Создание минимального образа на основе Alpine
 FROM alpine:latest
 
-# Устанавливаем необходимые зависимости
-RUN apk --no-cache add libstdc++ libc6-compat
+# Устанавливаем необходимые зависимости для работы программы
+RUN apk add --no-cache libstdc++ libc6-compat
+
+# Копируем скомпилированный исполняемый файл из первого этапа
+COPY --from=builder /go/src/app/myprogram /home/myprogram
 
 # Устанавливаем рабочую директорию
 WORKDIR /home
 
-# Копируем исполняемый файл из первого этапа
-COPY --from=build /usr/src/app/myprogram .
-
-# Делаем порт доступным
-EXPOSE 8081
-
-# Устанавливаем команду для запуска приложения
+# Устанавливаем точку входа
 ENTRYPOINT ["./myprogram"]
