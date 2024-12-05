@@ -7,6 +7,12 @@ WORKDIR /go/src/app
 # Клонируем репозиторий с программой
 RUN git clone https://github.com/artuom2283/DevOps3.git .
 
+# Инициализируем Go модуль, если он не существует
+RUN go mod init || echo "go.mod already exists"
+
+# Загружаем зависимости
+RUN go mod tidy
+
 # Выполняем сборку программы
 RUN go build -o myprogram .
 
