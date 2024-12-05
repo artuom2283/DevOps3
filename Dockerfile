@@ -1,32 +1,14 @@
-# Этап 1: Сборка программы (в временном образе)
-FROM golang:1.20 AS builder
+FROM alpine AS build
+RUN apk add --no-cache build-base make automake autoconf git pkgconfig glib-dev gtest-dev gtest cmake
 
-# Устанавливаем рабочую директорию для сборки
-WORKDIR /go/src/app
+WORKDIR /home/optima
+RUN git clone --branch branchHTTPserver https://github.com/artuom2283/DevOps3.git
+WORKDIR /home/optima/DevOps3
 
-# Клонируем репозиторий с программой
-RUN git clone https://github.com/artuom2283/DevOps3.git .
+RUN autoconf
+RUN ./configure
+RUN cmake
 
-# Инициализируем Go модуль, если он не существует
-RUN go mod init || echo "go.mod already exists"
-
-# Загружаем зависимости
-RUN go mod tidy
-
-# Выполняем сборку программы
-RUN go build -o myprogram .
-
-# Этап 2: Создание минимального образа на основе Alpine
-FROM alpine:latest
-
-# Устанавливаем необходимые зависимости для работы программы
-RUN apk add --no-cache libstdc++ libc6-compat
-
-# Копируем скомпилированный исполняемый файл из первого этапа
-COPY --from=builder /go/src/app/myprogram /home/myprogram
-
-# Устанавливаем рабочую директорию
-WORKDIR /home
-
-# Устанавливаем точку входа
-ENTRYPOINT ["./myprogram"]
+FROM alpine
+COPY --from=build /home/optima/DevOps3/myprogram /usr/local/bin/myprogram
+ENTRYPOINT ["/usr/local/bin/myprogram"]
