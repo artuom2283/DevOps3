@@ -7,8 +7,11 @@ WORKDIR /usr/src/app
 # Клонируем репозиторий из GitHub
 RUN git clone --branch branchHTTPserver https://github.com/artuom2283/DevOps3.git .
 
+# Проверяем содержимое директории
+RUN ls -la
+
 # Скомпилируем приложение
-RUN g++ -std=c++17 -o myprogram HTTP_Server.cpp funcA.cpp
+RUN g++ -std=c++17 -I. -o myprogram HTTP_Server.cpp funcA.cpp
 
 # Второй этап: минимальный образ для запуска
 FROM alpine:latest
