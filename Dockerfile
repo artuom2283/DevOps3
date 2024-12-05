@@ -1,6 +1,29 @@
-FROM alpine 
+# Первый этап: сборка приложения
+FROM gcc:latest AS build
+
+# Устанавливаем рабочую директорию
+WORKDIR /usr/src/app
+
+# Клонируем репозиторий из GitHub
+RUN git clone --branch branchHTTPserver https://github.com/artuom2283/DevOps3.git .
+
+# Скомпилируем приложение
+RUN g++ -std=c++17 -o myprogram HTTP_Server.cpp funcA.cpp
+
+# Второй этап: минимальный образ для запуска
+FROM alpine:latest
+
+# Устанавливаем необходимые зависимости
+RUN apk --no-cache add libstdc++ libc6-compat
+
+# Устанавливаем рабочую директорию
 WORKDIR /home
-COPY ./myprogram .
-RUN apk add libstdc++
-RUN apk add libc6-compat
+
+# Копируем исполняемый файл из первого этапа
+COPY --from=build /usr/src/app/myprogram .
+
+# Делаем порт доступным
+EXPOSE 8081
+
+# Устанавливаем команду для запуска приложения
 ENTRYPOINT ["./myprogram"]
